@@ -20,14 +20,13 @@ class MenuListItem extends Component {
         secondaryText={secondaryText ? `${secondaryText}$` : ''}
         leftAvatar={<Avatar src={`images/${primaryText.split(' ').join('')}.jpg`} />}
         rightAvatar={
-          <FloatingActionButton mini={true} secondary={!button}>
+          <FloatingActionButton mini secondary={!button}>
             {button ? <ContentAdd /> : <ContentRemove />}
           </FloatingActionButton>
         } />
     );
   }
 }
-
 
 
 export default MenuListItem;

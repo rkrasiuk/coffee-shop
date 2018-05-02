@@ -12,15 +12,20 @@ class WaitPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { completed: 0 };
+    this.state = {completed: 0};
+  }
+
+  componentWillMount() {
+    if (!this.props.userAuth)
+      this.props.history.push('/');
   }
 
   componentDidMount() {
-   this.timer = setTimeout(() => this.progress(5), 1000);
+    this.timer = setTimeout(() => this.progress(5), 1000);
   }
 
- componentWillUnmount() {
-   clearTimeout(this.timer);
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   }
 
   progress(completed) {
@@ -36,13 +41,13 @@ class WaitPage extends Component {
   render() {
     return (
       <div>
-        <br/>
+        <br />
         <LinearProgress mode="determinate" value={this.state.completed} />
         <br />
         <Link to={routes.MAIN}>
           <RaisedButton
             label='Back to Home'
-            primary={true}
+            primary
             onClick={() => {
               this.props.passOrder({});
               this.props.selectTab('about');
@@ -53,4 +58,10 @@ class WaitPage extends Component {
   }
 }
 
-export default connect(null, {passOrder, selectTab})(WaitPage);
+function mapStateToProps(state) {
+  return {
+    userAuth: state.userAuth
+  };
+}
+
+export default connect(mapStateToProps, {passOrder, selectTab})(WaitPage);

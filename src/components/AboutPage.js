@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GMap as GoogleMap } from './GoogleMap';
+import {GMap as GoogleMap} from './GoogleMap';
 
 const AboutPage = () => (
   <div>
@@ -18,20 +18,21 @@ const AboutPage = () => (
       a extraction grounds kopi-luwak in grinder affogato sweet
       decaffeinated roast. Café au lait chicory cinnamon macchiato, cream,
       roast, macchiato sit, java decaffeinated, and ut viennese trifecta
-      viennese aromatic chicory caramelization. </p>
-      <h3>Contact Us</h3>
-      <p>Email: coffee@shop.com</p>
-      <p>Phone: +123 (321) 45 54</p>
-      <div>
-        <GoogleMap
-          isMarkerShown={true}
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
-      </div>
+      viennese aromatic chicory caramelization.
+    </p>
+    <h3>Contact Us</h3>
+    <p>Email: coffee@shop.com</p>
+    <p>Phone: +123 (321) 45 54</p>
+    <div>
+      <GoogleMap
+        isMarkerShown
+        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+        loadingElement={<div style={{height: '100%'}} />}
+        containerElement={<div style={{height: '400px'}} />}
+        mapElement={<div style={{height: '100%'}} />}
+      />
     </div>
-)
+  </div>
+);
 
 export default AboutPage;

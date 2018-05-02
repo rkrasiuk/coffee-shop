@@ -15,17 +15,20 @@ class OrderPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { order: this.props.order };
+    this.state = {order: this.props.order};
+  }
+
+  componentWillMount() {
+    if (!this.props.userAuth)
+      this.props.history.push('/');
   }
 
   handleContentRemove = (value) => {
     const {order} = this.state;
     let newOrder = {...order};
     newOrder[value] = order[value] - 1;
-    if(newOrder[value] === 0) delete newOrder[value];
-    console.log(order);
-    console.log(newOrder);
-    this.setState({ order: newOrder });
+    if (newOrder[value] === 0) delete newOrder[value];
+    this.setState({order: newOrder});
     this.props.passOrder(newOrder);
   }
 
@@ -35,20 +38,20 @@ class OrderPage extends Component {
       <div>
         <Subheader>Your order</Subheader>
         <List>
-          {orderItems.map((item, i) => { return (
+          {orderItems.map((item, i) => (
             <MenuListItem
               key={i}
               primaryText={item}
               quantity={this.state.order[item]}
               onClick={this.handleContentRemove}
-              button={false}/>
-          )})}
+              button={false} />
+          ))}
         </List>
         <Link to={routes.WAIT}>
-          <RaisedButton label='Submit' primary={true}/>
+          <RaisedButton label='Submit' primary />
         </Link>
         <Link to={routes.MAIN}>
-          <FlatButton label='Back' secondary={true}/>
+          <FlatButton label='Back' secondary />
         </Link>
       </div>
     );
@@ -57,8 +60,9 @@ class OrderPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    order: state.order
+    order: state.order,
+    userAuth: state.userAuth
   };
 }
 
-export default connect(mapStateToProps, { passOrder })(OrderPage);
+export default connect(mapStateToProps, {passOrder})(OrderPage);

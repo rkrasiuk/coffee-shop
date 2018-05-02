@@ -12,10 +12,9 @@ import CouponPage from './CouponPage';
 import {selectTab} from '../actions/index';
 
 class Navigation extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { value: this.props.tab };
+  componentWillMount() {
+    if (!this.props.userAuth)
+      this.props.history.push('/');
   }
 
   handleChange = (value) => {
@@ -23,26 +22,27 @@ class Navigation extends Component {
   }
 
   render() {
-    return(
-      <Tabs value={this.props.tab}
+    return (
+      <Tabs
+        value={this.props.tab}
         onChange={this.handleChange}>
         <Tab
           icon={<HomeIcon />}
           label='About'
           value='about'>
-            <AboutPage />
+          <AboutPage />
         </Tab>
         <Tab
           icon={<MenuIcon />}
           label='Menu'
           value='menu'>
-            <MenuList />
+          <MenuList />
         </Tab>
         <Tab
           icon={<CouponIcon />}
           label='Coupons'
           value='coupon'>
-            <CouponPage />
+          <CouponPage />
         </Tab>
       </Tabs>
     );
@@ -51,7 +51,8 @@ class Navigation extends Component {
 
 function mapStateToProps(state) {
   return {
-    tab: state.tabSelected
+    tab: state.tabSelected,
+    userAuth: state.userAuth
   };
 }
 

@@ -3,3 +3,32 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#home-box, .signBox {
+  margin: 5% auto;
+  width: 30%;
+  text-align: center;
+  border: 0.08em solid grey;
+  border-radius: 5%;
+  padding: 5%;
+  overflow: auto;
+}
+
+#home-box img {
+  width: 20%;
+  margin-top: -5%;
+  position: center;
+}
+
+#home-box h1 {
+  font-size: 320%;
+}
+
+#home-box .homeButton {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.formField {
+  margin: 2% 2% 2% 2%;
+}
